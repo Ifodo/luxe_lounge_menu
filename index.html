@@ -309,19 +309,212 @@
         letter-spacing: 1px;
       }
       
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.8);
+        animation: fadeIn 0.3s ease;
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      
+      @keyframes slideUp {
+        from {
+          transform: translateY(50px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      
+      .modal-content {
+        background: linear-gradient(135deg, #f5f1e8 0%, #faf8f3 50%, #f5f1e8 100%);
+        margin: 10% auto;
+        padding: 30px;
+        border: 3px solid #8b7355;
+        border-radius: 20px;
+        width: 90%;
+        max-width: 500px;
+        position: relative;
+        animation: slideUp 0.4s ease;
+        box-shadow: 0 10px 50px rgba(0, 0, 0, 0.7);
+      }
+      
+      .modal-content::before {
+        content: "";
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        border: 1px solid rgba(139, 115, 85, 0.3);
+        border-radius: 10px;
+        pointer-events: none;
+      }
+      
+      .close-btn {
+        color: #c90101;
+        float: right;
+        font-size: 32px;
+        font-weight: bold;
+        cursor: pointer;
+        line-height: 20px;
+        transition: all 0.3s ease;
+      }
+      
+      .close-btn:hover,
+      .close-btn:focus {
+        color: #8b0000;
+        transform: rotate(90deg);
+      }
+      
+      .modal-header {
+        border-bottom: 2px solid #c90101;
+        padding-bottom: 15px;
+        margin-bottom: 20px;
+      }
+      
+      .modal-title {
+        color: #c90101;
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      
+      .modal-category {
+        color: #8b7355;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-top: 5px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      
+      .modal-price {
+        background: #c90101;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 10px;
+        font-size: 1.8rem;
+        font-weight: 700;
+        text-align: center;
+        margin: 20px 0;
+        box-shadow: 0 4px 15px rgba(201, 1, 1, 0.3);
+      }
+      
+      .modal-details {
+        background: rgba(255, 255, 255, 0.5);
+        padding: 15px;
+        border-radius: 10px;
+        margin-top: 15px;
+        border-left: 4px solid #c90101;
+      }
+      
+      .clickable-item {
+        cursor: pointer;
+        position: relative;
+      }
+      
+      .clickable-item::after {
+        content: "ⓘ";
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.2rem;
+        color: #c90101;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      
+      .clickable-item:hover::after {
+        opacity: 1;
+      }
+      
       @media (max-width: 768px) {
         .nav-btn {
-          padding: 12px 18px;
-          font-size: 0.8rem;
+          padding: 10px 16px;
+          font-size: 0.75rem;
+          gap: 6px;
         }
         
         .glass-header {
-          padding: 32px 20px;
+          padding: 24px 16px;
+        }
+        
+        .menu-card {
+          padding: 20px !important;
+        }
+        
+        .menu-tag {
+          top: -15px;
+          right: 10px;
+          padding: 6px 14px;
+          font-size: 0.75rem;
+        }
+        
+        .section-header {
+          font-size: 1.5rem !important;
+        }
+        
+        .decorative-ornament {
+          font-size: 1.2rem;
+        }
+        
+        .modal-content {
+          margin: 20% auto;
+          width: 95%;
+          padding: 20px;
+        }
+        
+        .modal-title {
+          font-size: 1.2rem;
+        }
+        
+        .modal-price {
+          font-size: 1.5rem;
+          padding: 8px 16px;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .header-elegant {
+          font-size: 2rem !important;
+        }
+        
+        .handwritten-font {
+          font-size: 1.5rem !important;
+        }
+        
+        .nav-container {
+          padding: 12px;
+        }
+        
+        .menu-item-name {
+          font-size: 0.85rem;
+        }
+        
+        .price-badge {
+          font-size: 0.75rem;
+          padding: 4px 10px;
         }
       }
     </style>
   </head>
-  <body class="min-h-screen p-4 md:p-8">
+  <body class="min-h-screen p-2 sm:p-4 md:p-8">
     <div class="content-wrapper max-w-7xl mx-auto">
       <header class="glass-header text-center" style="position: relative;">
         <div class="menu-tag">MENU LIST</div>
@@ -350,6 +543,26 @@
       </nav>
 
       <div id="menu" class="space-y-8"></div>
+
+      <!-- Modal -->
+      <div id="itemModal" class="modal">
+        <div class="modal-content">
+          <span class="close-btn" id="closeModal">&times;</span>
+          <div class="modal-header">
+            <h2 class="modal-title" id="modalItemName"></h2>
+            <p class="modal-category" id="modalCategory"></p>
+          </div>
+          <div class="modal-price" id="modalPrice"></div>
+          <div class="modal-details">
+            <p style="color: #2d2d2d; font-weight: 500; margin: 0;">
+              <strong>Category:</strong> <span id="modalCategoryDetail"></span>
+            </p>
+            <p style="color: #2d2d2d; font-weight: 500; margin-top: 10px;">
+              <strong>Available at:</strong> Luxe Lounge by Limelite Hotel
+            </p>
+          </div>
+        </div>
+      </div>
 
       <footer class="text-center mt-20 mb-8">
         <div class="glass-header inline-block px-8 py-4" style="box-shadow: 0 8px 30px rgba(201, 1, 1, 0.4);">
@@ -528,11 +741,15 @@
             </div>
             <div style="width: 150px; height: 3px; background: linear-gradient(90deg, transparent, #c90101, transparent); margin: 0 auto;"></div>
           </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-1">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 sm:gap-x-12 gap-y-1">
             ${section.items
               .map(
-                (item) => `
-              <div class="menu-item py-3 px-4 transition-all rounded">
+                (item, itemIndex) => `
+              <div class="menu-item clickable-item py-3 px-4 transition-all rounded" 
+                   data-item-name="${item[0]}" 
+                   data-item-price="${item[1]}" 
+                   data-category="${section.title}"
+                   onclick="openModal('${item[0].replace(/'/g, "\\'")}', '${item[1]}', '${section.title}')">
                 <div class="flex justify-between items-center gap-4">
                   <span class="menu-item-name text-sm md:text-base flex-1">${item[0]}</span>
                   ${item[1] ? `<span class="price-badge">₦${item[1]}</span>` : '<span class="text-sm font-bold" style="color: #c90101;">CALL</span>'}
@@ -582,6 +799,45 @@
 
       // Footer year
       document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Modal functionality
+      const modal = document.getElementById("itemModal");
+      const closeBtn = document.getElementById("closeModal");
+
+      function openModal(itemName, itemPrice, category) {
+        document.getElementById("modalItemName").textContent = itemName;
+        document.getElementById("modalCategory").textContent = category;
+        document.getElementById("modalCategoryDetail").textContent = category;
+        
+        if (itemPrice) {
+          document.getElementById("modalPrice").innerHTML = `₦${itemPrice}`;
+        } else {
+          document.getElementById("modalPrice").innerHTML = `<span style="font-size: 1.2rem;">Please Call for Price</span>`;
+        }
+        
+        modal.style.display = "block";
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal() {
+        modal.style.display = "none";
+        document.body.style.overflow = "auto";
+      }
+
+      closeBtn.onclick = closeModal;
+
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          closeModal();
+        }
+      }
+
+      // Close modal on ESC key
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+          closeModal();
+        }
+      });
     </script>
   </body>
 </html>
