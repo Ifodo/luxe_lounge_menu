@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luxe Lounge by Limelite Hotel - Menu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Dancing+Script:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"
+      defer
+    ></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: "Poppins", sans-serif;
+        background: #1a1a1a;
+        position: relative;
+        overflow-x: hidden;
+      }
+      
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1920&q=80');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        opacity: 0.3;
+        pointer-events: none;
+        z-index: 0;
+      }
+      
+      body::after {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at center, transparent 0%, rgba(26, 26, 26, 0.8) 100%);
+        pointer-events: none;
+        z-index: 0;
+      }
+      
+      .content-wrapper {
+        position: relative;
+        z-index: 1;
+      }
+      
+      .menu-card {
+        background: linear-gradient(135deg, #f5f1e8 0%, #faf8f3 50%, #f5f1e8 100%);
+        border: 3px solid #8b7355;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+      }
+      
+      .menu-card::before {
+        content: "";
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        border: 1px solid rgba(139, 115, 85, 0.3);
+        pointer-events: none;
+      }
+      
+      .menu-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+        border-color: #c90101;
+      }
+      
+      .header-elegant {
+        color: #ffffff;
+        font-weight: 700;
+        letter-spacing: -1px;
+      }
+      
+      .theme-text {
+        color: #c90101;
+      }
+      
+      .theme-gradient {
+        background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      
+      .icon-elegant {
+        color: #ffffff;
+      }
+      
+      .divider-line {
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), #ffffff, rgba(255, 255, 255, 0.3), transparent);
+        height: 1px;
+      }
+      
+      .price-badge {
+        background: #c90101;
+        padding: 6px 14px;
+        border-radius: 8px;
+        color: white;
+        font-weight: 600;
+        font-size: 0.875rem;
+        box-shadow: 0 2px 8px rgba(201, 1, 1, 0.25);
+        letter-spacing: 0.3px;
+      }
+      
+      .menu-item {
+        transition: all 0.3s ease;
+        border-bottom: 1px dotted rgba(139, 115, 85, 0.3);
+        background: rgba(255, 255, 255, 0.3);
+      }
+      
+      .menu-item:last-child {
+        border-bottom: none;
+      }
+      
+      .menu-item:hover {
+        background: rgba(201, 1, 1, 0.08);
+        transform: translateX(4px);
+      }
+      
+      .menu-item-name {
+        color: #2d2d2d;
+        font-weight: 500;
+      }
+      
+      .glass-header {
+        background: linear-gradient(135deg, #c90101 0%, #a00000 100%);
+        border: 2px solid #a00000;
+        border-radius: 20px;
+        padding: 48px 32px;
+        margin-bottom: 32px;
+        margin-top: 20px;
+        box-shadow: 0 8px 30px rgba(201, 1, 1, 0.3);
+        overflow: visible;
+      }
+      
+      .nav-container {
+        position: sticky;
+        top: 16px;
+        z-index: 100;
+        background: linear-gradient(135deg, #f5f1e8 0%, #faf8f3 50%, #f5f1e8 100%);
+        border: 3px solid #8b7355;
+        border-radius: 16px;
+        padding: 20px;
+        margin-bottom: 40px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+      }
+      
+      .nav-btn {
+        background: rgba(255, 255, 255, 0.8);
+        border: 2px solid #8b7355;
+        color: #2d2d2d;
+        padding: 14px 24px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        font-weight: 700;
+        font-size: 0.875rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        white-space: nowrap;
+        min-width: fit-content;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      
+      .nav-btn:hover {
+        background: #c90101;
+        border-color: #c90101;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(201, 1, 1, 0.4);
+      }
+      
+      .nav-btn.active {
+        background: #c90101;
+        border-color: #c90101;
+        color: white;
+        box-shadow: 0 4px 16px rgba(201, 1, 1, 0.5);
+      }
+      
+      .nav-btn svg {
+        transition: all 0.3s ease;
+      }
+      
+      .nav-btn:hover svg,
+      .nav-btn.active svg {
+        transform: scale(1.1);
+      }
+      
+      .nav-scroll {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        scrollbar-width: thin;
+        scrollbar-color: #c90101 #f5f5f5;
+        padding-bottom: 8px;
+      }
+      
+      .nav-scroll::-webkit-scrollbar {
+        height: 6px;
+      }
+      
+      .nav-scroll::-webkit-scrollbar-track {
+        background: rgba(139, 115, 85, 0.2);
+        border-radius: 10px;
+      }
+      
+      .nav-scroll::-webkit-scrollbar-thumb {
+        background: #c90101;
+        border-radius: 10px;
+      }
+      
+      .nav-scroll::-webkit-scrollbar-thumb:hover {
+        background: #a00000;
+      }
+      
+      .menu-tag {
+        position: absolute;
+        top: -20px;
+        right: 20px;
+        background: #c90101;
+        color: white;
+        padding: 8px 20px;
+        font-weight: 700;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transform: rotate(2deg);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        border: 2px solid #8b0000;
+      }
+      
+      .menu-section {
+        scroll-margin-top: 120px;
+      }
+      
+      .section-header {
+        color: #c90101;
+        text-transform: uppercase;
+        font-weight: 800;
+        letter-spacing: 2px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+      }
+      
+      .elegant-border {
+        border-left: 4px solid #c90101;
+        padding-left: 16px;
+      }
+      
+      .decorative-line {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        margin: 20px 0;
+      }
+      
+      .decorative-line::before,
+      .decorative-line::after {
+        content: '';
+        flex: 1;
+        border-bottom: 2px solid #c90101;
+        margin: 0 10px;
+      }
+      
+      .decorative-ornament {
+        color: #c90101;
+        font-size: 1.5rem;
+        margin: 0 10px;
+      }
+      
+      .category-icon-wrapper {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 12px;
+        border-radius: 12px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .handwritten-font {
+        font-family: "Dancing Script", cursive;
+        font-weight: 600;
+        letter-spacing: 1px;
+      }
+      
+      @media (max-width: 768px) {
+        .nav-btn {
+          padding: 12px 18px;
+          font-size: 0.8rem;
+        }
+        
+        .glass-header {
+          padding: 32px 20px;
+        }
+      }
+    </style>
+  </head>
+  <body class="min-h-screen p-4 md:p-8">
+    <div class="content-wrapper max-w-7xl mx-auto">
+      <header class="glass-header text-center" style="position: relative;">
+        <div class="menu-tag">MENU LIST</div>
+        <div class="mb-4">
+          <div class="flex items-center justify-center gap-3 mb-2">
+            <div class="category-icon-wrapper">
+              <i data-lucide="crown" class="w-7 h-7 md:w-8 md:h-8 icon-elegant"></i>
+            </div>
+          </div>
+          <h1 class="text-4xl md:text-7xl font-bold header-elegant mb-3" style="text-transform: uppercase;">
+            Luxe Lounge
+          </h1>
+          <div class="divider-line max-w-md mx-auto my-4"></div>
+          <p class="text-sm md:text-base text-white font-light mb-1" style="opacity: 0.9;">by</p>
+          <p class="text-2xl md:text-4xl theme-gradient handwritten-font mb-3">
+            Limelite Hotel
+          </p>
+          <p class="text-white text-sm md:text-base font-medium tracking-widest uppercase" style="letter-spacing: 2px; opacity: 0.95;">
+            Where Taste Meets Class
+          </p>
+        </div>
+      </header>
+
+      <nav class="nav-container" id="menuNav">
+        <div class="nav-scroll" id="navButtons"></div>
+      </nav>
+
+      <div id="menu" class="space-y-8"></div>
+
+      <footer class="text-center mt-20 mb-8">
+        <div class="glass-header inline-block px-8 py-4" style="box-shadow: 0 8px 30px rgba(201, 1, 1, 0.4);">
+          <p class="text-white text-sm font-medium" style="letter-spacing: 1px;">
+            &copy; <span id="year"></span> LUXE LOUNGE | Crafted with 
+            <span class="text-white font-semibold">♥</span> by Limelite
+          </p>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      const menuData = [
+        {
+          title: "Drinks",
+          icon: "wine",
+          color: "theme-text",
+          items: [
+            ["Hennessy Vs", "75,000"],
+            ["Hennessy VSOP", "130,000"],
+            ["Martel Vs", "75,000"],
+            ["Martel Blue Swift", "130,000"],
+            ["Casamigos", "180,000"],
+            ["Hennessy XO", "500,000"],
+            ["Beliaire Rose", "80,000"],
+            ["Jameson", "35,000"],
+            ["Ciroc", "60,000"],
+            ["Azul", "450,000"],
+            ["Jack Daniel", "45,000"],
+            ["Four Cousin", "15,000"],
+            ["4th Street", "15,000"],
+            ["Bailey’s", "35,000"],
+            ["Sierra Tequila", "25,000"],
+            ["Andre Rose", "25,000"],
+            ["Andre Brut", "20,000"],
+            ["Olmeca", "35,000"],
+            ["Martini", "25,000"],
+            ["Absolute", "25,000"],
+            ["William Lawson", "15,000"],
+            ["Crownberry", "12,000"],
+            ["Hollandia", "3,000"],
+            ["Active", "3,000"],
+            ["Red Bull", "3,000"],
+            ["Blue Bullet", "2,500"],
+            ["Black Bullet", "3,000"],
+            ["Water", "500"],
+            ["Can Coke", "1,000"],
+            ["Can Fanta", "1,000"],
+            ["Can Schwepps", "1,000"],
+            ["Can Trophy", "1,500"],
+            ["Can G/Berg", "1,500"],
+            ["Can Heineken", "1,500"],
+            ["Can Stout", "2,000"],
+            ["Can Malta Guinness", "1,000"],
+            ["Can Maltina", "1,000"],
+            ["Can Amstel Malta", "1,000"],
+            ["Santi Periot", "12,000"],
+            ["Baron de Valls", "12,000"],
+          ],
+        },
+        {
+          title: "Rice",
+          icon: "utensils",
+          color: "theme-text",
+          items: [
+            ["White Rice and Turkey", "6,000"],
+            ["White Rice and Chicken", "6,000"],
+            ["White Rice and Beef", "4,500"],
+            ["White Rice only", "1,500"],
+            ["White Rice and Boiled Egg", "2,500"],
+            ["Jollof Rice and Turkey", "6,500"],
+            ["Jollof Rice and Chicken", "6,500"],
+            ["Jollof Rice and Beef", "5,000"],
+            ["Jollof Rice only", "2,000"],
+            ["Fried Rice and Turkey", "6,500"],
+            ["Fried Rice and Chicken", "6,500"],
+            ["Fried Rice and Beef", "5,000"],
+            ["Fried Rice only", "2,000"],
+            ["Plantain only", "1,500"],
+          ],
+        },
+        {
+          title: "Swallow",
+          icon: "drumstick",
+          color: "theme-text",
+          items: [
+            ["Pando Egusi and Turkey", "7,500"],
+            ["Pando Egusi and Chicken", "7,500"],
+            ["Pando Egusi and Beef", "5,500"],
+            ["Pando only", "1,500"],
+            ["Semo Egusi and Chicken", "6,500"],
+            ["Semo Egusi and Turkey", "6,500"],
+            ["Semo Egusi and Beef", "5,000"],
+            ["Semo only", "1,000"],
+            ["Eba Egusi and Turkey", "6,500"],
+            ["Eba Egusi and Chicken", "6,500"],
+            ["Eba Egusi and Beef", "5,000"],
+            ["Eba only", "1,000"],
+            ["Turkey Pepper Soup", "5,500"],
+            ["Chicken Pepper Soup", "5,500"],
+            ["Catfish Pepper Soup", "7,000"],
+            ["Pepper Chicken", "5,000"],
+            ["Pepper Turkey", "5,000"],
+            ["Pepper Beef", "4,000"],
+          ],
+        },
+        {
+          title: "Noodles & Spaghetti",
+          icon: "coffee",
+          color: "theme-text",
+          items: [
+            ["Indomie and Egg", "3,000"],
+            ["Indomie and Turkey", "6,500"],
+            ["Indomie and Chicken", "6,500"],
+            ["Indomie and Beef", "5,000"],
+            ["Noodles only", "2,000"],
+            ["Spaghetti and Turkey", "6,500"],
+            ["Spaghetti and Chicken", "6,500"],
+            ["Spaghetti and Beef", "5,000"],
+            ["Spaghetti and Boiled Egg", "3,000"],
+            ["Plantain and Egg", "3,000"],
+          ],
+        },
+        {
+          title: "Special Order",
+          icon: "star",
+          color: "theme-text",
+          items: [
+            ["Snail", ""],
+            ["Good Meat", ""],
+            ["Chicken and Chips", ""],
+            ["Shawarma", ""],
+            ["Asun", ""],
+          ],
+        },
+      ];
+
+      const container = document.getElementById("menu");
+      const navContainer = document.getElementById("navButtons");
+
+      // Create navigation buttons
+      menuData.forEach((section, index) => {
+        const navBtn = document.createElement("button");
+        navBtn.className = `nav-btn ${index === 0 ? 'active' : ''}`;
+        navBtn.setAttribute('data-target', `section-${index}`);
+        navBtn.innerHTML = `
+          <i data-lucide="${section.icon}" class="w-5 h-5"></i>
+          <span>${section.title}</span>
+        `;
+        navBtn.addEventListener('click', () => {
+          const target = document.getElementById(`section-${index}`);
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          
+          // Update active state
+          document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+          navBtn.classList.add('active');
+        });
+        navContainer.appendChild(navBtn);
+      });
+
+      // Create menu sections
+      menuData.forEach((section, index) => {
+        const sectionDiv = document.createElement("section");
+        sectionDiv.id = `section-${index}`;
+        sectionDiv.className = "menu-section";
+        
+        const card = document.createElement("div");
+        card.className = "menu-card rounded-2xl p-6 md:p-10";
+
+        card.innerHTML = `
+          <div class="mb-8 text-center relative">
+            <div class="flex items-center justify-center gap-4 mb-4">
+              <span class="decorative-ornament">✦</span>
+              <h2 class="text-2xl md:text-3xl font-bold section-header">${section.title}</h2>
+              <span class="decorative-ornament">✦</span>
+            </div>
+            <div style="width: 150px; height: 3px; background: linear-gradient(90deg, transparent, #c90101, transparent); margin: 0 auto;"></div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-1">
+            ${section.items
+              .map(
+                (item) => `
+              <div class="menu-item py-3 px-4 transition-all rounded">
+                <div class="flex justify-between items-center gap-4">
+                  <span class="menu-item-name text-sm md:text-base flex-1">${item[0]}</span>
+                  ${item[1] ? `<span class="price-badge">₦${item[1]}</span>` : '<span class="text-sm font-bold" style="color: #c90101;">CALL</span>'}
+                </div>
+              </div>`
+              )
+              .join("")}
+          </div>
+        `;
+        
+        sectionDiv.appendChild(card);
+        container.appendChild(sectionDiv);
+      });
+
+      // Initialize Lucide icons
+      document.addEventListener("DOMContentLoaded", () => {
+        lucide.createIcons();
+      });
+
+      // Intersection Observer for active nav state
+      const observerOptions = {
+        root: null,
+        rootMargin: '-120px 0px -50% 0px',
+        threshold: 0
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const sectionId = entry.target.id;
+            const activeBtn = document.querySelector(`[data-target="${sectionId}"]`);
+            if (activeBtn) {
+              document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+              activeBtn.classList.add('active');
+              
+              // Scroll button into view in nav
+              activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            }
+          }
+        });
+      }, observerOptions);
+
+      // Observe all menu sections
+      document.querySelectorAll('.menu-section').forEach(section => {
+        observer.observe(section);
+      });
+
+      // Footer year
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
